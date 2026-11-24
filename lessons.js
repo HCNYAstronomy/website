@@ -7,6 +7,17 @@ const resources = [
   ['solutions', 'Solutions'],
 ];
 
+function resourceUrl(value) {
+  if (typeof value !== 'string') return '';
+  const url = value.trim();
+  if (/^https:\/\//i.test(url)) return url;
+
+  const path = url.replace(/^\.\//, '');
+  const filename = path.startsWith('pdfs/') ? path.slice(5) : '';
+  if (!filename || /[/\\]/.test(filename) || !/\.pdf$/i.test(filename)) return '';
+  return './pdfs/' + encodeURIComponent(filename);
+}
+
 function renderLesson(lesson) {
   const item = document.createElement('li');
   item.className = 'lesson';
@@ -22,17 +33,20 @@ function renderLesson(lesson) {
   const links = document.createElement('p');
   links.className = 'resources';
   for (const [key, label] of resources) {
-    const url = lesson[key];
-    if (typeof url === 'string' && /^https:\/\//i.test(url.trim())) {
+    const url = resourceUrl(lesson[key]);
+    if (url) {
       const link = document.createElement('a');
-      link.href = url.trim();
+      link.href = url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
       link.textContent = label;
-      link.setAttribute('aria-label', label + ' for ' + lesson.lesson);
+      link.setAttribute('aria-label', label + ' for ' + lesson.lesson + ' (opens in a new tab)');
       links.append(link);
     } else {
       const placeholder = document.createElement('span');
       placeholder.className = 'pending';
-      placeholder.textContent = label + ' coming soon';
+      placeholder.textContent = label;
+      placeholder.title = label + ' coming soon';
       links.append(placeholder);
     }
   }

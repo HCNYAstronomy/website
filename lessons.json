@@ -5,15 +5,17 @@
     "recording": "https://drive.google.com/file/d/19P-EMaGMeAQXpVHOSLXEwO32PvoCJK1y/view?usp=sharing",
     "slides": "pdfs/Math Crash Course I.pdf",
     "homework": "pdfs/Lesson 1 Homework.pdf",
-    "solutions": ""
+    "solutions": "",
+    "pptx": "pdfs/Math Crash Course I.pptx"
   },
   {
     "lesson": "Lesson 2",
     "topic": "Math Prerequisites II",
     "recording": "https://youtu.be/nIjjBtzc7Z0",
-    "slides": "pptxs/calculus for beginners.pptx",
+    "slides": "",
     "homework": "",
-    "solutions": ""
+    "solutions": "",
+    "pptx": "pptxs/calculus for beginners.pptx"
   },
   {
     "lesson": "Lesson 3",

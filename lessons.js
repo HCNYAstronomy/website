@@ -3,19 +3,21 @@ const lessonStatus = document.querySelector('#lesson-status');
 const resources = [
   ['recording', 'Recording'],
   ['slides', 'Slides'],
+  ['pptx', 'PPTX'],
   ['homework', 'Homework'],
   ['solutions', 'Solutions'],
 ];
 
-function resourceUrl(value) {
+function resourceUrl(value, download) {
   if (typeof value !== 'string') return '';
   const url = value.trim();
-  if (/^https:\/\//i.test(url)) return url;
+  if (!download && /^https:\/\//i.test(url)) return url;
 
   const path = url.replace(/^\.\//, '');
-  const filename = path.startsWith('pdfs/') ? path.slice(5) : '';
-  if (!filename || /[/\\]/.test(filename) || !/\.pdf$/i.test(filename)) return '';
-  return './pdfs/' + encodeURIComponent(filename);
+  const match = download
+    ? /^(pptxs|pdfs)\/([^/\\]+\.pptx)$/i.exec(path)
+    : /^(pdfs)\/([^/\\]+\.pdf)$/i.exec(path);
+  return match ? './' + match[1] + '/' + encodeURIComponent(match[2]) : '';
 }
 
 function renderLesson(lesson) {
@@ -33,14 +35,19 @@ function renderLesson(lesson) {
   const links = document.createElement('p');
   links.className = 'resources';
   for (const [key, label] of resources) {
-    const url = resourceUrl(lesson[key]);
+    const download = key === 'pptx';
+    const url = resourceUrl(lesson[key], download);
     if (url) {
       const link = document.createElement('a');
       link.href = url;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
+      if (download) {
+        link.download = '';
+      } else {
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+      }
       link.textContent = label;
-      link.setAttribute('aria-label', label + ' for ' + lesson.lesson + ' (opens in a new tab)');
+      link.setAttribute('aria-label', label + ' for ' + lesson.lesson + (download ? ' (downloads PowerPoint)' : ' (opens in a new tab)'));
       links.append(link);
     } else {
       const placeholder = document.createElement('span');

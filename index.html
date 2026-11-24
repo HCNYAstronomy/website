@@ -3,40 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HCNY December Astronomy Olympiad Training</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="lessons.js" defer></script>
+  <title>HCNY Astronomy | December Astronomy Olympiad Training</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&amp;family=Roboto:wght@400;700&amp;display=swap">
+  <link rel="stylesheet" href="styles.css?v=2">
+  <script src="lessons.js?v=2" defer></script>
 </head>
-<body>
+<body class="wrap">
   <header class="masthead">
-    <div class="wrap">
-      <p class="identity">HCNY Astronomy</p>
-      <h1>HCNY December Astronomy<br class="wide"> Olympiad Training</h1>
-    </div>
+    <h1>HCNY Astronomy</h1>
+    <p>Hwachong Nanyang Astronomy Interest Group</p>
   </header>
-  <main class="wrap">
-    <h2 id="materials">Lesson materials</h2>
-    <p class="scroll-hint">Scroll the table to see all resources.</p>
-    <div class="table-region" role="region" aria-labelledby="materials" tabindex="0">
-      <table>
-        <thead>
-          <tr>
-            <th scope="col">Lesson</th>
-            <th scope="col">Topic</th>
-            <th scope="col">Lesson Recordings</th>
-            <th scope="col">Slides</th>
-            <th scope="col">Homework</th>
-            <th scope="col">Solutions</th>
-          </tr>
-        </thead>
-        <tbody id="lessons">
-          <tr><td colspan="6">Loading lessons…</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <noscript><p>Enable JavaScript to load lesson materials.</p></noscript>
+  <main>
+    <section class="training" aria-labelledby="training-title">
+      <h2 id="training-title">The Training</h2>
+      <div>
+        <p class="course">December Astronomy Olympiad Training</p>
+        <p id="lesson-status" role="status">Loading lessons…</p>
+        <ul id="lessons" class="lesson-list" aria-label="Lessons"></ul>
+        <noscript><p>Enable JavaScript to load lesson materials.</p></noscript>
+      </div>
+    </section>
   </main>
-  <footer class="wrap">
+  <footer>
     <a href="mailto:hcnyastro@gmail.com">hcnyastro@gmail.com</a>
     <a href="https://github.com/HCNYAstronomy/december-astro-training/edit/main/lessons.json">Edit lessons on GitHub</a>
   </footer>

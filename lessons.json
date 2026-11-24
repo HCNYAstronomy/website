@@ -1,15 +1,15 @@
 [
   {
     "lesson": "Lesson 1",
-    "topic": "Math Prerequisites",
+    "topic": "Math Prerequisites I",
     "recording": "https://drive.google.com/file/d/19P-EMaGMeAQXpVHOSLXEwO32PvoCJK1y/view?usp=sharing",
-    "slides": "pdfs/Math Crash Course I.pdf",
+    "slides": "Math Crash Course I.pptx",
     "homework": "pdfs/Lesson 1 Homework.pdf",
     "solutions": ""
   },
   {
     "lesson": "Lesson 2",
-    "topic": "Lesson name to be announced",
+    "topic": "Math Prerequisites II",
     "recording": "",
     "slides": "",
     "homework": "",
@@ -17,7 +17,7 @@
   },
   {
     "lesson": "Lesson 3",
-    "topic": "Lesson name to be announced",
+    "topic": "Physics Prerequisites",
     "recording": "",
     "slides": "",
     "homework": "",

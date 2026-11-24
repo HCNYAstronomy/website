@@ -3,21 +3,19 @@ const lessonStatus = document.querySelector('#lesson-status');
 const resources = [
   ['recording', 'Recording'],
   ['slides', 'Slides'],
-  ['pptx', 'PPTX'],
   ['homework', 'Homework'],
   ['solutions', 'Solutions'],
 ];
 
-function resourceUrl(value, download) {
+function resourceUrl(value) {
   if (typeof value !== 'string') return '';
   const url = value.trim();
-  if (!download && /^https:\/\//i.test(url)) return url;
+  if (/^https:\/\//i.test(url)) return url;
 
   const path = url.replace(/^\.\//, '');
-  const match = download
-    ? /^(pptxs|pdfs)\/([^/\\]+\.pptx)$/i.exec(path)
-    : /^(pdfs)\/([^/\\]+\.pdf)$/i.exec(path);
-  return match ? './' + match[1] + '/' + encodeURIComponent(match[2]) : '';
+  const filename = path.startsWith('pdfs/') ? path.slice(5) : '';
+  if (!filename || /[/\\]/.test(filename) || !/\.pdf$/i.test(filename)) return '';
+  return './pdfs/' + encodeURIComponent(filename);
 }
 
 function renderLesson(lesson) {
@@ -34,27 +32,26 @@ function renderLesson(lesson) {
 
   const links = document.createElement('p');
   links.className = 'resources';
+  const slides = document.createElement('span');
   for (const [key, label] of resources) {
-    const download = key === 'pptx';
-    const url = resourceUrl(lesson[key], download);
+    const group = key === 'slides' || key === 'pptx' ? slides : links;
+    if (key === 'slides') links.append(slides);
+    const url = resourceUrl(lesson[key]);
+    if (download && !url) continue;
     if (url) {
       const link = document.createElement('a');
       link.href = url;
-      if (download) {
-        link.download = '';
-      } else {
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-      }
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
       link.textContent = label;
-      link.setAttribute('aria-label', label + ' for ' + lesson.lesson + (download ? ' (downloads PowerPoint)' : ' (opens in a new tab)'));
-      links.append(link);
+      link.setAttribute('aria-label', label + ' for ' + lesson.lesson + ' (opens in a new tab)');
+      group.append(link);
     } else {
       const placeholder = document.createElement('span');
       placeholder.className = 'pending';
       placeholder.textContent = label;
       placeholder.title = label + ' coming soon';
-      links.append(placeholder);
+      group.append(placeholder);
     }
   }
   item.append(heading, links);

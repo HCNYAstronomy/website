@@ -41,8 +41,8 @@ function renderLesson(lesson) {
   for (const [key, label] of resources) {
     const group = key === 'slides' || key === 'pptx' ? slides : links;
     if (key === 'slides') links.append(slides);
-    if (download) slides.append(' ');
     const download = key === 'pptx';
+    if (download) slides.append(' ');
     const url = resourceUrl(lesson[key], download);
     if (url) {
       const link = document.createElement('a');

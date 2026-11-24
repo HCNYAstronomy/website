@@ -3,7 +3,7 @@
     "lesson": "Lesson 1",
     "topic": "Math Prerequisites I",
     "recording": "https://drive.google.com/file/d/19P-EMaGMeAQXpVHOSLXEwO32PvoCJK1y/view?usp=sharing",
-    "slides": "Math Crash Course I.pptx",
+    "slides": "pdfs/Math Crash Course I.pptx",
     "homework": "pdfs/Lesson 1 Homework.pdf",
     "solutions": ""
   },
@@ -11,7 +11,7 @@
     "lesson": "Lesson 2",
     "topic": "Math Prerequisites II",
     "recording": "https://youtu.be/nIjjBtzc7Z0",
-    "slides": "calculus for beginners.pptx",
+    "slides": "pdfs/calculus for beginners.pptx",
     "homework": "",
     "solutions": ""
   },

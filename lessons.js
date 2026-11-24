@@ -34,8 +34,6 @@ function renderLesson(lesson) {
 
   const links = document.createElement('p');
   links.className = 'resources';
-  links.style.display = 'grid';
-  links.style.gridTemplateColumns = 'repeat(auto-fit, minmax(min(100%, 6rem), 1fr))';
   const slides = document.createElement('span');
   slides.style.whiteSpace = 'nowrap';
   for (const [key, label] of resources) {

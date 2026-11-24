@@ -34,20 +34,21 @@ function renderLesson(lesson) {
 
   const links = document.createElement('p');
   links.className = 'resources';
+  links.style.display = 'grid';
+  links.style.gridTemplateColumns = 'repeat(auto-fit, minmax(min(100%, 6rem), 1fr))';
   const slides = document.createElement('span');
+  slides.style.whiteSpace = 'nowrap';
   for (const [key, label] of resources) {
     const group = key === 'slides' || key === 'pptx' ? slides : links;
     if (key === 'slides') links.append(slides);
+    if (download) slides.append(' ');
     const download = key === 'pptx';
     const url = resourceUrl(lesson[key], download);
-    if (download && !url) continue;
     if (url) {
       const link = document.createElement('a');
       link.href = url;
       if (download) {
         link.download = '';
-        link.style.fontSize = '0.8em';
-        link.style.marginInlineStart = '0.3em';
       } else {
         link.target = '_blank';
         link.rel = 'noopener noreferrer';
@@ -59,6 +60,7 @@ function renderLesson(lesson) {
       const placeholder = document.createElement('span');
       placeholder.className = 'pending';
       placeholder.textContent = label;
+      placeholder.style.fontSize = 'inherit';
       placeholder.title = label + ' coming soon';
       group.append(placeholder);
     }
